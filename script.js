@@ -611,14 +611,6 @@ function updateMoveList() {
         moveRow.appendChild(moveElem);
     });
 
-    // Scroll to the current move
-    if (currentPosition >= 0) {
-        const activeMove = movesDiv.querySelector('.move.active');
-        if (activeMove) {
-            activeMove.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-    }
-
     updateNavigationButtons();
 }
 

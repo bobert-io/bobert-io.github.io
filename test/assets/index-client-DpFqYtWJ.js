@@ -1,0 +1,1 @@
+import{m as a,c as t,l as c,u as f,a as e}from"./render-CYhXMX0T.js";import{f as m,t as p}from"./render-CYhXMX0T.js";function u(n){t===null&&c(),f(()=>{const o=e(n);if(typeof o=="function")return o})}function i(n){t===null&&c(),u(()=>()=>e(n))}export{m as flushSync,a as mount,i as onDestroy,u as onMount,p as tick,e as untrack};

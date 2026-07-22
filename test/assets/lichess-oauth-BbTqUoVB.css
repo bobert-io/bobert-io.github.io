@@ -1,0 +1,1 @@
+.toast-notification.svelte-1w29e1y{position:fixed;bottom:24px;left:50%;transform:translate(-50%) translateY(20px);background:#333;color:#fff;padding:10px 24px;border-radius:6px;font-size:14px;opacity:0;transition:opacity .3s,transform .3s;z-index:1000;pointer-events:none}.toast-notification.visible.svelte-1w29e1y{opacity:1;transform:translate(-50%) translateY(0)}

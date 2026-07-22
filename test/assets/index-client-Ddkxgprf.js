@@ -1,0 +1,1 @@
+import{m as s,c as t,u as f,a as c}from"./render-D6sTIcT0.js";import{f as p,t as y}from"./render-D6sTIcT0.js";import{l as e}from"./errors-CPstbR3Q.js";function u(o){t===null&&e(),f(()=>{const n=c(o);if(typeof n=="function")return n})}function a(o){t===null&&e(),u(()=>()=>c(o))}export{p as flushSync,s as mount,a as onDestroy,u as onMount,y as tick,c as untrack};

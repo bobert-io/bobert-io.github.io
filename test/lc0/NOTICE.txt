@@ -1,0 +1,21 @@
+Experimental lc0 browser harness, Ticket 18.1. NOT DEPLOYMENT-READY.
+
+lc0 v0.32.1, copyright The LCZero Authors, GPL-3.0-or-later.
+Source: https://github.com/LeelaChessZero/lc0/tree/fd71a2d921b689c5f479d3227c3806c8e272d9c5
+Local adaptations: engine/lc0/browser.patch and browser_main.cc in this project.
+GPL text: COPYING (staged with the local build).
+Dependencies include Eigen (MPL-2.0), Abseil (Apache-2.0), zlib (zlib license),
+and Emscripten runtime components (see their source notices).
+
+Original Maia 1500, CSSLab/maia-chess, GPL-3.0 release.
+Source/model/training code:
+https://github.com/CSSLab/maia-chess/tree/749204cf5979ce7f8b0412e804a4ee7c83c49ff8
+Maintainer licensing response:
+https://github.com/CSSLab/maia-chess/issues/76#issuecomment-4982341747
+Unmodified maia_weights/maia-1500.pb.gz, SHA-256:
+35ab6f20421d59e1df3b17c5a5016947af4c6761368ef84044a9a9c7619a9a00
+
+Before public deployment, provide corresponding source for the modified engine
+and applicable dependencies, retain all required licenses/notices, and complete
+the model redistribution review. Links in this provisional notice alone are not
+a finished corresponding-source distribution package.

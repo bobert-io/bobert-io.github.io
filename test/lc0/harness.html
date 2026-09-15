@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>lc0 browser feasibility harness</title>
+  <script>window.coi = { coepCredentialless: () => true }</script>
+  <script src="../coi-serviceworker.js"></script>
+  <style>
+    body { font: 16px system-ui; max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+    button, input { font: inherit; padding: .5rem; margin: .25rem; }
+    input { width: min(90%, 650px); }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #eee; padding: 1rem; }
+    #status { font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>lc0 browser feasibility harness</h1>
+  <p>Ticket 18.1, work in progress. Original Maia 1500, upstream Eigen backend,
+    two search threads. Maia smoke tests pass in Firefox; the strong-network fixture
+    and broader compatibility measurements are pending.
+    Nothing here changes the production Stockfish integration.</p>
+  <p id="status" role="status">Not started</p>
+  <button id="start">Load Maia</button>
+  <button id="search" disabled>Fresh Maia search (1 node)</button>
+  <button id="stop" disabled>Stop</button>
+  <button id="quit" disabled>Teardown</button>
+  <form id="command-form">
+    <label for="command">UCI command</label><br>
+    <input id="command" value="position startpos moves e2e4 e7e5" autocomplete="off">
+    <button id="send" disabled>Send</button>
+  </form>
+  <p>Scores are configured as centipawns, from the side-to-move perspective.
+    The fresh-search button clears the previous tree and returns to startpos.
+    Use UCI commands for other positions or bounded searches.</p>
+  <pre id="log"></pre>
+  <script type="module" src="harness.js"></script>
+</body>
+</html>

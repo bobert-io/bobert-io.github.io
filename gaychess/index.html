@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#17141f" />
+    <title>Gay Chess — Two kings. Zero queens.</title>
+    <link rel="icon" href="data:," />
+    <script src="coi-serviceworker.js"></script>
+    <link rel="stylesheet" href="styles.css?v=3" />
+  </head>
+  <body>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+    <main class="app-shell">
+      <header>
+        <a class="brand" href="#" aria-label="Gay Chess home">
+          <span class="brand-mark"><img src="assets/pieces/wK.svg" alt=""><img src="assets/pieces/wK.svg" alt=""></span>
+          <span>GAY CHESS</span>
+        </a>
+        <button type="button" class="rules-button" id="rulesButton">How to play</button>
+      </header>
+
+      <section class="hero">
+        <div>
+          <p class="eyebrow">THE ROYAL COUPLE VARIANT</p>
+          <h1>Two kings.<br /><em>Zero queens.</em></h1>
+          <p class="dek">Keep at least one king standing. Sacrifice bravely. Love wins.</p>
+        </div>
+        <div class="rainbow-line" aria-hidden="true"></div>
+      </section>
+
+      <section class="game-layout">
+        <div class="board-wrap">
+          <div class="player-bar opponent">
+            <div class="avatar dark" id="topAvatar"><img id="topAvatarImage" src="assets/pieces/bK.svg" alt=""></div>
+            <div><strong id="topPlayerName">Fairy-Stockfish</strong><span id="topPlayerMeta">Thoughtful · Black</span></div>
+            <div class="king-lives" id="topLives"></div>
+          </div>
+          <div id="board" class="board" role="grid" aria-label="Gay Chess board"></div>
+          <div class="player-bar">
+            <div class="avatar light" id="bottomAvatar"><img id="bottomAvatarImage" src="assets/pieces/wK.svg" alt=""></div>
+            <div><strong>You</strong><span id="bottomPlayerMeta">White</span></div>
+            <div class="king-lives" id="bottomLives"></div>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <div class="status-card">
+            <span class="status-dot"></span>
+            <div><small>GAME STATUS</small><strong id="statusText">Your move</strong></div>
+          </div>
+
+          <div class="controls">
+            <div class="engine-strength" id="engineStrength">
+              <label for="level">Engine strength</label>
+              <select id="level">
+                <option value="1">Casual</option>
+                <option value="2" selected>Thoughtful</option>
+                <option value="3">Fierce</option>
+              </select>
+            </div>
+            <div class="engine-strength" id="computerSide">
+              <label for="side">Play as</label>
+              <select id="side">
+                <option value="w" selected>White</option>
+                <option value="b">Black</option>
+                <option value="random">Random</option>
+              </select>
+            </div>
+            <button type="button" id="newGame" class="primary">Play computer</button>
+            <button type="button" id="playFriend" class="primary">Play a friend</button>
+            <button type="button" id="undo" class="secondary">Undo turn</button>
+          </div>
+
+          <div class="moves-card">
+            <div class="card-title"><span>Move history</span><button id="copyMoves" title="Copy game">Copy</button></div>
+            <div id="moveList" class="move-list"><p class="empty">Make the first move.</p></div>
+          </div>
+
+          <div class="tip"><span>✦</span><p><strong>Royal tip</strong>Your kings can defend each other. You only lose when the last one falls.</p></div>
+        </aside>
+      </section>
+    </main>
+
+    <dialog id="rulesDialog">
+      <button class="dialog-close" id="closeRules" aria-label="Close">×</button>
+      <p class="eyebrow">HOUSE RULES</p>
+      <h2>How to play Gay Chess</h2>
+      <ol>
+        <li><strong>Two kings, no queen.</strong> Each queen is replaced by a second king.</li>
+        <li><strong>Keep one alive.</strong> A king may be captured; the match continues if its partner survives.</li>
+        <li><strong>Protect both kings when possible.</strong> You may only leave a king in check when no move can save both kings. With one king left, normal check rules apply.</li>
+        <li><strong>Each king can castle with either rook.</strong> Long castling ends on b/c for the d-file king and c/d for the e-file king; short castling ends on f/e for the d-file king and g/f for the e-file king. Normal path and check restrictions apply.</li>
+        <li><strong>No new queens.</strong> Pawns promote to a rook, bishop, or knight.</li>
+        <li><strong>Draws.</strong> Stalemate, threefold repetition, and the fifty-move rule are draws.</li>
+      </ol>
+      <button class="primary wide" id="playButton">Let’s play</button>
+    </dialog>
+
+    <dialog id="multiplayerDialog">
+      <button class="dialog-close" id="closeMultiplayer" aria-label="Close">×</button>
+      <p class="eyebrow">PEER-TO-PEER</p>
+      <h2 id="multiplayerTitle">Play a friend</h2>
+      <p class="dialog-copy" id="multiplayerMessage"></p>
+      <div class="share-box" id="shareBox" hidden>
+        <label for="shareLink">Share this link</label>
+        <textarea id="shareLink" readonly rows="4"></textarea>
+        <button type="button" class="secondary wide" id="copyShareLink">Copy link</button>
+      </div>
+      <div class="share-box" id="answerBox" hidden>
+        <label for="answerLink">Paste your friend’s answer link</label>
+        <textarea id="answerLink" rows="3" placeholder="Paste the returned link here"></textarea>
+        <button type="button" class="secondary wide" id="applyAnswer">Connect</button>
+      </div>
+      <button type="button" class="primary wide" id="multiplayerAction" hidden></button>
+      <p class="privacy-note" id="multiplayerNote"></p>
+    </dialog>
+
+    <dialog id="gameOverDialog" class="game-over-dialog">
+      <p class="eyebrow">GAME OVER</p>
+      <h2 id="gameOverTitle"></h2>
+      <p class="dialog-copy" id="gameOverReason"></p>
+      <div class="game-over-actions">
+        <button type="button" class="secondary" id="closeGameOver">View board</button>
+        <button type="button" class="primary" id="playAgain">Play computer</button>
+      </div>
+    </dialog>
+
+    <div class="promotion-picker" id="promotionPicker" hidden>
+      <p>Choose a promotion</p>
+      <div></div>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="src/app.js?v=19"></script>
+  </body>
+</html>

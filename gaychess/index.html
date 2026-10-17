@@ -6,6 +6,10 @@
     <meta name="theme-color" content="#17141f" />
     <title>Gay Chess — Two kings. Zero queens.</title>
     <link rel="icon" href="data:," />
+    <script>
+      if(location.protocol==='http:'&&!['localhost','127.0.0.1','[::1]'].includes(location.hostname))
+        location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`);
+    </script>
     <script src="coi-serviceworker.js"></script>
     <link rel="stylesheet" href="styles.css?v=3" />
   </head>
